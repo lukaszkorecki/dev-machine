@@ -1,19 +1,20 @@
 {
-  'name' : 'dev-machine',
-  'default_attributes' : {
-    'user' : 'vagrant',
-    'dotfiles' : {
-      'path' : '/home/vagrant/.DotFiles',
-      'repo' : 'git@github.com:lukaszkorecki/DotFiles'
+  "name" : "dev-machine",
+  "default_attributes" : {
+    "user" : "vagrant",
+    "dotfiles" : {
+      "path" : "/home/vagrant/.DotFiles",
+      "repo" : "git@github.com:lukaszkorecki/DotFiles"
     }
   },
-  'description' : 'Linux based dev VM, with my dot files!',
-  'json_class': 'Chef::Role',
-  'chef_type' : 'role',
-  'run_list': [
-    'recipe[root_ssh_agent::ppid]',
-    'recipe[dev-machine::packages]',
-    'recipe[dev-machine::ruby-193]'
+  "description" : "Linux based dev VM, with my dot files!",
+  "json_class": "Chef::Role",
+  "chef_type" : "role",
+  "run_list": [
+    "recipe[root_ssh_agent::ppid]",
+    "recipe[dev-machine::packages]",
+    "recipe[dev-machine::ruby-193]",
+    "recipe[dev-machine::dotfiles]"
   ]
 
 }
