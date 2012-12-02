@@ -4,6 +4,11 @@ directory node[:dotfiles][:path] do
   group node[:user]
 end
 
+user node[:user] do
+  action :modify
+  shell "/bin/zsh"
+end
+
 template "/home/#{node[:user]}/.ssh/config" do
   source "sshconfig.erb"
   user node[:user]
@@ -19,19 +24,12 @@ git node[:dotfiles][:path] do
   not_if { File.exists? "/home/#{node[:user]}/.vimrc"}
 end
 
-script "get / update dot files" do
-  interpreter "bash"
+script "create symlinks" do
+  interpreter "zsh"
   user node[:user]
   cwd node[:dotfiles][:path]
-  code "make update"
+  code <<-CODE
+    export HOME=/home/#{node[:user]}
+    make unlink || make link
+  CODE
 end
-
-script "setup dot files" do
-  interpreter "bash"
-  user node[:user]
-  cwd node[:dotfiles][:path]
-  code <<CODE
-    make unlink && make setup
-CODE
-end
-
