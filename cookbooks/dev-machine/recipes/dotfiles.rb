@@ -30,6 +30,8 @@ script "create symlinks" do
   cwd node[:dotfiles][:path]
   code <<-CODE
     export HOME=/home/#{node[:user]}
-    make unlink || make link
+    make link
   CODE
+
+  not_if { File.exists? "/home/#{node[:user]}/.vimrc"}
 end
