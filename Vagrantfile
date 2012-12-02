@@ -21,6 +21,6 @@ Vagrant::Config.run do |config|
   config.vm.provision :chef_solo do |chef|
     chef.cookbooks_path     = "cookbooks"
     chef.roles_path         = "roles"
-    chef.add_role             "devbox"
+    chef.add_role             "dev-machine"
   end
 end
