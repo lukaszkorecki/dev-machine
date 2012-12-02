@@ -1,0 +1,10 @@
+{
+  "name" : "dev-machine",
+  "description" : "Linux based dev VM, with my dot files!",
+  "json_class": "Chef::Role",
+  "chef_type" : "role",
+  "run_list": [
+    "recipe[root-ssh-agent::ppid]"
+  ]
+
+}
