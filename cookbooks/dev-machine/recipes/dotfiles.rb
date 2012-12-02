@@ -19,17 +19,19 @@ git node[:dotfiles][:path] do
   not_if { File.exists? "/home/#{node[:user]}/.vimrc"}
 end
 
-script "setup dot files" do
-  interpreter "bash"
-  user node[:user]
-  cwd node[:dotfiles][:path]
-  code "make setup"
-  not_if { File.exists? "/home/#{node[:user]}/.private"}
-end
-
-script "update dot files" do
+script "get / update dot files" do
   interpreter "bash"
   user node[:user]
   cwd node[:dotfiles][:path]
   code "make update"
 end
+
+script "setup dot files" do
+  interpreter "bash"
+  user node[:user]
+  cwd node[:dotfiles][:path]
+  code <<CODE
+    make unlink && make setup
+CODE
+end
+

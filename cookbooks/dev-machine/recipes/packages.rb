@@ -7,6 +7,7 @@ libcurl4-openssl-dev
 build-essential
 make
 git-core
+zsh
 ).each do |pkg|
   package(pkg) { action :install }
 end
