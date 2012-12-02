@@ -1,10 +1,12 @@
 %w(
 weechat
-vim-full
+vim
 tmux
 curl
 libcurl4-openssl-dev
 build-essential
 make
 git-core
-).each { |pkg| package(pkg ) { action :install } }
+).each do |pkg|
+  package(pkg) { action :install }
+end

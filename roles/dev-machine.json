@@ -12,6 +12,7 @@
   "chef_type" : "role",
   "run_list": [
     "recipe[root_ssh_agent::ppid]",
+    "recipe[dev-machine::apt]",
     "recipe[dev-machine::packages]",
     "recipe[dev-machine::ruby-193]",
     "recipe[dev-machine::dotfiles]"
