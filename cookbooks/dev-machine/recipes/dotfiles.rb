@@ -21,17 +21,24 @@ git node[:dotfiles][:path] do
   action :sync
   user node[:user]
   group node[:user]
-  not_if { File.exists? "/home/#{node[:user]}/.vimrc"}
 end
 
+script "nuke symlinks just in case" do
+  interpreter "zsh"
+  user node[:user]
+  cwd node[:dotfiles][:path]
+  code <<-CODE
+    export HOME=/home/#{node[:user]}
+    make unlink || true
+  CODE
+  only_if { File.exists? "/home/#{node[:user]}/.vimrc"}
+end
 script "create symlinks" do
   interpreter "zsh"
   user node[:user]
   cwd node[:dotfiles][:path]
   code <<-CODE
     export HOME=/home/#{node[:user]}
-    make link
+    make setup
   CODE
-
-  not_if { File.exists? "/home/#{node[:user]}/.vimrc"}
 end
