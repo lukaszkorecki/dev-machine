@@ -15,6 +15,7 @@
     "recipe[dev-machine::apt]",
     "recipe[dev-machine::packages]",
     "recipe[dev-machine::ruby-193]",
+    "recipe[dev-machine::python]",
     "recipe[dev-machine::dotfiles]"
   ]
 

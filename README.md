@@ -21,4 +21,5 @@ By using `chef-solo` and `vagrant` it builds a linux box, installs some awesome 
 
 and makes `ruby-1.9.3` the default ruby.
 
+Also python and other things.
 Neat, eh?
