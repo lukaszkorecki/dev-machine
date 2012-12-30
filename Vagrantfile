@@ -9,15 +9,21 @@ Vagrant::Config.run do |config|
 
   config.ssh.forward_agent = true
   config.vm.network :hostonly, "192.168.33.10"
+  # make the vm faster
   config.vm.customize [
     "modifyvm", :id,
     "--memory", (1 * 1024).to_s,
-    "--cpus", 2]
-  #
-  # Enable provisioning with chef solo, specifying a cookbooks path, roles
-  # path, and data_bags path (all relative to this Vagrantfile), and adding
-  # some recipes and/or roles.
-  #
+    "--cpus", 2
+  ]
+
+  # and enable symlinks in shared folders
+  config.vm.customize [
+    'setextradata', :id,
+    'VBoxInternal2/SharedFoldersEnableSymlinksCreate/bridge', 1
+  ]
+
+
+  # Chefit
   config.vm.provision :chef_solo do |chef|
     chef.cookbooks_path     = "cookbooks"
     chef.roles_path         = "roles"
