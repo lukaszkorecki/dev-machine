@@ -2,6 +2,7 @@
 weechat
 vim
 tmux
+mutt
 curl
 libcurl4-openssl-dev
 build-essential
