@@ -17,28 +17,18 @@ end
 
 git node[:dotfiles][:path] do
   repository node[:dotfiles][:repo]
-  revision 'master'
+  revision 'HEAD'
   action :sync
   user node[:user]
   group node[:user]
 end
 
-script "nuke symlinks just in case" do
+script "Setup dotfiles" do
   interpreter "zsh"
   user node[:user]
   cwd node[:dotfiles][:path]
   code <<-CODE
     export HOME=/home/#{node[:user]}
-    make unlink || true
-  CODE
-  only_if { File.exists? "/home/#{node[:user]}/.vimrc"}
-end
-script "create symlinks" do
-  interpreter "zsh"
-  user node[:user]
-  cwd node[:dotfiles][:path]
-  code <<-CODE
-    export HOME=/home/#{node[:user]}
-    make setup
+    make -k setup safe-update
   CODE
 end
