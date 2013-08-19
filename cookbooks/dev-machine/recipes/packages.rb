@@ -1,15 +1,14 @@
 %w(
-weechat
-vim
-tmux
-mutt
-curl
-libcurl4-openssl-dev
-build-essential
-make
-git-core
-zsh
-exuberant-ctags
+  build-essential
+  curl
+  exuberant-ctags
+  git-core
+  libcurl4-openssl-dev
+  make
+  mutt
+  tmux
+  vim
+  weechat
 ).each do |pkg|
   package(pkg) { action :install }
 end

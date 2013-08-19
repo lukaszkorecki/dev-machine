@@ -9,14 +9,9 @@
   },
   "description" : "Linux based dev VM, with my dot files!",
   "json_class": "Chef::Role",
-  "chef_type" : "role",
   "run_list": [
     "recipe[root_ssh_agent::ppid]",
-    "recipe[dev-machine::apt]",
-    "recipe[dev-machine::packages]",
-    "recipe[dev-machine::ruby-193]",
-    "recipe[dev-machine::python]",
-    "recipe[dev-machine::dotfiles]"
+    "recipe[dev-machine]"
   ]
 
 }
