@@ -10,6 +10,6 @@ execute "apt-get update" do
   action :run
 end
 
-package "golang" do
+package "golang-stable" do
   action :install
 end
