@@ -18,11 +18,11 @@ git node[:dotfiles][:path] do
   group node[:user]
 end
 
-script "Setup dotfiles" do
+execute "Setup dotfiles" do
+  action :run
   user node[:user]
+  group node[:user]
   cwd node[:dotfiles][:path]
-  code <<-CODE
-    export HOME=/home/#{node[:user]}
-    make -k setup safe-update
-  CODE
+  env({ "HOME" => node[:dotfiles][:path] })
+  command "make -C #{node[:dotfiles][:path]} -f Makefile -k setup"
 end
