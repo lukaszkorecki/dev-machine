@@ -23,6 +23,7 @@ execute "Setup dotfiles" do
   user node[:user]
   group node[:user]
   cwd node[:dotfiles][:path]
-  env({ "HOME" => node[:dotfiles][:path] })
+  env({ "HOME" => "/home/#{node[:user]}" })
   command "make -C #{node[:dotfiles][:path]} -f Makefile -k setup"
+  not_if { File.exists? node[:dotfiles][:path] }
 end
