@@ -13,3 +13,8 @@ end
 package "golang-stable" do
   action :install
 end
+
+# Go source will live here
+directory "/home/#{node[:user]}/proj/src" do
+  action :create
+end
