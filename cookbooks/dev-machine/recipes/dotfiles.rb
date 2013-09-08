@@ -27,3 +27,13 @@ execute "Setup dotfiles" do
   command "make -C #{node[:dotfiles][:path]} -f Makefile -k setup"
   not_if { File.exists? node[:dotfiles][:path] }
 end
+
+execute "update dotfiles" do
+  action :run
+  user node[:user]
+  group node[:user]
+  cwd node[:dotfiles][:path]
+  env({ "HOME" => "/home/#{node[:user]}" })
+  command "make -C #{node[:dotfiles][:path]} -f Makefile -k update"
+  only_if { File.exists? node[:dotfiles][:path] }
+end
