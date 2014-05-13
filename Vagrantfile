@@ -27,6 +27,10 @@ Vagrant.configure("2") do |config|
   end
 
   # Chefit
+  # use berkshelf wiith chef.
+  # install with
+  #   vagrant plugin install vagrant-berkshelf --plugin-version 2.0.1
+  config.berkshelf.enabled = true
   config.vm.provision :chef_solo do |chef|
     chef.cookbooks_path     = "cookbooks"
     chef.roles_path         = "roles"

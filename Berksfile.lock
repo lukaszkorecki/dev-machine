@@ -1,0 +1,7 @@
+DEPENDENCIES
+  root_ssh_agent
+    git: git@github.com:ldenman/chef_root_ssh_agent.git
+    revision: c7c7de6bb0cc48980e84147ba0ef0f7828ca4425
+
+GRAPH
+  root_ssh_agent (0.1.0)

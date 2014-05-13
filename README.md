@@ -7,7 +7,11 @@ It builds an Ubuntu 12.04 box and imports my [DotFiles](https://github.com/lukas
 ## How to?
 
 - [Install Vagrant](https://vagrantup.com)
-- `git submodule update --init`
+- Install [Berkshelf](http://berkshelf.com/) plugin for Vagrant with:
+
+```
+vagrant plugin install vagrant-berkshelf --plugin-version 2.0.1
+```
 - `vagrant up`
 
 
