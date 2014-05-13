@@ -18,3 +18,11 @@ script "Update alternatives and make 1.9.3 the default" do
      sudo update-alternatives --config gem
   EOH
 end
+
+script "Install essential gems" do
+   interpreter "bash"
+   user "root"
+   code <<-EOF
+   sudo gem install bundler pry
+   EOF
+end

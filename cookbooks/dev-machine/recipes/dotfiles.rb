@@ -12,7 +12,7 @@ end
 
 git node[:dotfiles][:path] do
   repository node[:dotfiles][:repo]
-  revision 'HEAD'
+  revision 'master'
   action :sync
   user node[:user]
   group node[:user]

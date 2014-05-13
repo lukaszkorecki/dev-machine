@@ -15,9 +15,5 @@ default_attributes(
 
 run_list [
   "recipe[root_ssh_agent::ppid]",
-  "recipe[dev-machine]",
-  "recipe[dev-machine::python]",
-  "recipe[dev-machine::golang]",
-  "recipe[dev-machine::go-tools]",
-  "recipe[dev-machine::node]"
+  "recipe[dev-machine]"
 ]

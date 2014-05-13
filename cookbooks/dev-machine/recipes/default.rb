@@ -1,5 +1,5 @@
 include_recipe "dev-machine::apt"
 include_recipe "dev-machine::packages"
-include_recipe "dev-machine::ruby-193"
+include_recipe "dev-machine::ruby"
 include_recipe "dev-machine::dotfiles"
 include_recipe "dev-machine::dotvim"
