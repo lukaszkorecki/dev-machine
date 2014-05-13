@@ -12,7 +12,7 @@ script "Add brightbox ppa" do
   EOF
 end
 
-%w{ ruby2.1 ruby-switch}.map do |p|
+%w{ ruby2.1 libruby2.1 ruby2.1-dev ruby-switch}.map do |p|
   package p do
     action :install
   end
