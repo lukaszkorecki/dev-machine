@@ -18,7 +18,7 @@ execute "Setup dotvim" do
   group node[:user]
   cwd node[:dotvim][:path]
   env({ "HOME" => "/home/#{node[:user]}" })
-  command "make -C #{node[:dotvim][:path]} -f Makefile -k run"
+  command "make -C #{node[:dotvim][:path]} -f Makefile"
   not_if { File.exists? node[:dotvim][:path] }
 end
 
@@ -28,7 +28,7 @@ execute "update dotvim" do
   group node[:user]
   cwd node[:dotvim][:path]
   env({ "HOME" => "/home/#{node[:user]}" })
-  command "make -C #{node[:dotvim][:path]} -f Makefile -k run"
+  command "make -C #{node[:dotvim][:path]} -f Makefile"
   only_if { File.exists? node[:dotvim][:path] }
 end
 
