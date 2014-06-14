@@ -3,13 +3,14 @@
 
 Vagrant.configure("2") do |config|
   config.vm.box = "dev-box"
-  config.vm.box_url = "http://f.willianfernandes.com.br/vagrant-boxes/UbuntuServer12.04amd64.box"
+  config.vm.box_url = "hashicorp/precise64"
 
   config.vm.synced_folder "bridge", "/home/vagrant/bridge"
 
   config.vm.hostname = "dev-box"
   config.ssh.forward_agent = true
   config.vm.network :private_network, ip: "192.168.33.10"
+
   # make the vm faster
   config.vm.provider :virtualbox do |vb|
     vb.customize [
