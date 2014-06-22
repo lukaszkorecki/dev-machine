@@ -10,10 +10,14 @@ default_attributes(
   "dotvim" => {
     "path" => "/home/vagrant/.vim",
     "repo" => "git@github.com:lukaszkorecki/DotVim"
+  },
+  "nfs-server" => {
+    "mount-point" => File.join("home", "vagrant", "proj")
   }
 )
 
 run_list [
   "recipe[root_ssh_agent::ppid]",
-  "recipe[dev-machine]"
+  "recipe[dev-machine]",
+  "recipe[nfs-server]"
 ]
