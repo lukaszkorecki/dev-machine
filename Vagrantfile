@@ -2,10 +2,9 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "dev-box"
-  config.vm.box_url = "hashicorp/precise64"
+  config.vm.box = "hashicorp/precise64"
 
-  config.vm.synced_folder "bridge", "/home/vagrant/bridge"
+  config.vm.synced_folder "bridge", File.join(*%w{ / home vagrant bridge })
 
   config.vm.hostname = "dev-box"
   config.ssh.forward_agent = true
