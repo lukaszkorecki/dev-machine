@@ -13,6 +13,8 @@ package "golang" do
 end
 
 # Go source will live here
-directory "/home/#{node[:user]}/proj/src" do
+directory File.join("/", "home", node[:user], "proj", "src") do
   action :create
+  user node[:user]
+  group node[:user]
 end
