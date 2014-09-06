@@ -4,7 +4,7 @@
 Vagrant.configure("2") do |config|
   config.vm.box = "hashicorp/precise64"
 
-  config.vm.synced_folder "bridge", File.join(*%w{ / home vagrant bridge })
+  config.vm.synced_folder "bridge", "/home/vagrant/bridge"
 
   config.vm.hostname = "dev-box"
   config.ssh.forward_agent = true
@@ -17,13 +17,6 @@ Vagrant.configure("2") do |config|
       "--memory", (1 * 1024).to_s,
       "--cpus", 1
     ]
-
-    # and enable symlinks in shared folders
-    vb.customize [
-      'setextradata', :id,
-      'VBoxInternal2/SharedFoldersEnableSymlinksCreate/bridge', 1
-    ]
-
   end
 
   # Chefit
