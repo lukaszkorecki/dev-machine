@@ -9,6 +9,7 @@
   tmux
   vim
   weechat
+  watch
 ).each do |pkg|
   package(pkg) { action :install }
 end
