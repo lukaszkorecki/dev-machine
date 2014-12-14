@@ -1,6 +1,0 @@
-[submodule "cookbooks/root_ssh_agent"]
-	path = cookbooks/root_ssh_agent
-	url = https://github.com/dergachev/chef_root_ssh_agent
-[submodule "cookbooks/nfs-server"]
-	path = cookbooks/nfs-server
-	url = git@github.com:lukaszkorecki/nfs-server.git

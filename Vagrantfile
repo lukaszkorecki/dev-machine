@@ -20,10 +20,5 @@ Vagrant.configure('2') do |config|
     ]
   end
 
-  # Chefit
-  config.vm.provision :chef_solo do |chef|
-    chef.cookbooks_path     = 'cookbooks'
-    chef.roles_path         = 'roles'
-    chef.add_role 'dev-machine'
-  end
+  config.vm.provision "shell", path: "bootstrap.sh"
 end
