@@ -44,7 +44,7 @@ _q apt-get -y -q install ruby2.1  ruby2.1-dev nodejs golang
 
 _q update-alternatives --set ruby /usr/bin/ruby2.1
 
-gem install bundler pry rails --no-rdoc --no-ri
+_q gem install bundler pry --no-rdoc --no-ri
 
 # some cleanup
 apt-get autoremove -y
