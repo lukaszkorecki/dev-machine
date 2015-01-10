@@ -8,7 +8,7 @@ Vagrant.configure('2') do |config|
 
   config.vm.hostname = 'dev-box'
   config.ssh.forward_agent = true
-  config.vm.network 'private_network', ip: '192.168.33.12'
+  config.vm.network 'private_network', ip: '192.168.33.10'
 
   # make the vm faster
   config.vm.provider :virtualbox do |vb|
