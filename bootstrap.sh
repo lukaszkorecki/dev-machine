@@ -3,7 +3,7 @@
 set -e
 
 log() {
-  logger -s -t PROVISIONER -- "$*"
+  logger -s -t PROVISIONER -- "$*" 2>&1
 }
 
 _q() {
@@ -33,7 +33,7 @@ _q apt-get -y -q install git-core  \
 # add brightbox ppa
 
 _q apt-add-repository ppa:brightbox/ruby-ng
-_q apt-add-repository ppa:gophers/go
+# _q apt-add-repository ppa:gophers/go
 _q apt-add-repository ppa:chris-lea/node.js
 
 # install latest ruby
