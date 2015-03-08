@@ -25,6 +25,9 @@ apt-get install -y -q  \
   elasticsearch
 
 
+cd /usr/share/
+./elasticsearch/bin/plugin --install lmenezes/elasticsearch-kopf/
+
 # open up ports
 ufw allow ssh
 ufw allow 5432
