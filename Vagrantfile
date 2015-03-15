@@ -25,5 +25,14 @@ Vagrant.configure('2') do |config|
     storage.vm.hostname = 'storage'
     storage.vm.network 'private_network', ip: '192.168.34.11'
     storage.vm.provision 'shell', path: 'storage-bootstrap.sh'
+
+    storage.vm.provider :virtualbox do |vb|
+      # vb.gui = true
+      vb.customize [
+        'modifyvm', :id,
+        '--memory', '512',
+        '--cpus', 1
+      ]
+    end
   end
 end
