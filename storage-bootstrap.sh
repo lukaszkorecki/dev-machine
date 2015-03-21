@@ -24,13 +24,22 @@ apt-get install -y -q  \
   openjdk-7-jre-headless \
   elasticsearch
 
+if test -e /usr/share/elasticsearch/plugins/kopf ; then
+  echo 'kopf already installed'
+else
 
-cd /usr/share/
-./elasticsearch/bin/plugin --install lmenezes/elasticsearch-kopf/
+  cd /usr/share/
+  ./elasticsearch/bin/plugin --install lmenezes/elasticsearch-kopf/
+fi
 
-# open up ports
-ufw allow ssh
-ufw allow 5432
-ufw allow 9200
-ufw allow 6379
-yes | ufw enable
+apt-get remove ufw -y
+apt-get autoremove -y
+
+
+if grep '^listen_addresses = ' /etc/postgresql/9.3/main/postgresql.conf ; then
+  echo 'pg already set up'
+else
+  echo 'listen_addresses = "*"' >> /etc/postgresql/9.3/main/postgresql.conf
+  echo 'host    all             all             0.0.0.0/0              md5' >> /etc/postgresql/9.3/main/pg_hba.conf
+  service postgressql restart || service postgressql start
+fi
