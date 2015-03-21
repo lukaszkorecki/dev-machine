@@ -20,9 +20,9 @@ apt-get install -y -q  \
   postgresql-9.3 \
   redis-server \
   redis-tools \
-  ufw \
   openjdk-7-jre-headless \
-  elasticsearch
+  elasticsearch \
+  postgresql-contrib-9.3
 
 if test -e /usr/share/elasticsearch/plugins/kopf ; then
   echo 'kopf already installed'
