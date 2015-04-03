@@ -27,7 +27,8 @@ _q apt-get -y -q install git-core  \
   python2.7 \
   python2.7-dev \
   python-pip \
-  tmux
+  tmux \
+  tree
 
 
 # add brightbox ppa

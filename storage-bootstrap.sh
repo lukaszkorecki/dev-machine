@@ -43,3 +43,8 @@ else
   echo 'host    all             all             0.0.0.0/0              md5' >> /etc/postgresql/9.3/main/pg_hba.conf
   service postgressql restart || service postgressql start
 fi
+
+
+service postgresql status || service postgresql start
+service elasticsearch status || service elasticsearch start
+service redis-server start status || service redis-server start start
