@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+echo "ES"
+vagrant ssh storage -c 'sudo service elasticsearch status'
+vagrant ssh storage -c 'sudo service elasticsearch start'
+
+echo "Redis"
+vagrant ssh storage -c 'sudo service redis-server status'
+vagrant ssh storage -c 'sudo service redis-server start'
