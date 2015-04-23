@@ -16,12 +16,23 @@ else
   apt-get update
 fi
 
+if grep rabbitmq /etc/apt/sources.list ; then
+  echo 'Rabbit installed'
+else
+  curl https://www.rabbitmq.com/rabbitmq-signing-key-public.asc > /tmp/rabbit-key
+  apt-key add /tmp/rabbit-key
+
+  add-apt-repository 'deb http://www.rabbitmq.com/debian/ testing main'
+  apt-get update
+fi
+
 apt-get install -y -q  \
   postgresql-9.3 \
   redis-server \
   redis-tools \
   openjdk-7-jre-headless \
   elasticsearch \
+  rabbitmq-server \
   postgresql-contrib-9.3
 
 if test -e /usr/share/elasticsearch/plugins/kopf ; then
@@ -45,6 +56,15 @@ else
 fi
 
 
+# configure rabbit mq
+if rabbitmqctl list_users | grep rabbit ; then
+  echo 'Rabbitmq is ready'
+else
+  rabbitmqctl add_user rabbit p4ssw0rd
+  rabbitmqctl set_permissions rabbit '.*' '.*' '.*'
+fi
+
 service postgresql status || service postgresql start
 service elasticsearch status || service elasticsearch start
-service redis-server start status || service redis-server start start
+service redis-server status || service redis-server start
+service rabbitmq-server status || service rabbitmq-server start
