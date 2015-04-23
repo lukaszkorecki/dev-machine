@@ -60,8 +60,11 @@ fi
 if rabbitmqctl list_users | grep rabbit ; then
   echo 'Rabbitmq is ready'
 else
+  rabbitmqctl add_vhost /main
   rabbitmqctl add_user rabbit p4ssw0rd
-  rabbitmqctl set_permissions rabbit '.*' '.*' '.*'
+  rabbitmqctl set_user_tags rabbit administrator
+  rabbitmqctl set_permissions -p /main rabbit "." "." ".*"
+  service rabbitmq-server restart
 fi
 
 service postgresql status || service postgresql start
