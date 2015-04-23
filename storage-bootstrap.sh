@@ -27,6 +27,7 @@ else
 fi
 
 apt-get install -y -q  \
+  htop \
   postgresql-9.3 \
   redis-server \
   redis-tools \

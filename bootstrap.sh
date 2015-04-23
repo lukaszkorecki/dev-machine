@@ -28,6 +28,7 @@ _q apt-get -y -q install git-core  \
   python2.7-dev \
   python-pip \
   tmux \
+  htop \
   tree
 
 
