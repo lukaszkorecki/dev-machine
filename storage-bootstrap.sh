@@ -78,6 +78,7 @@ else
   rabbitmqctl set_user_tags rabbit administrator
   rabbitmqctl set_permissions -p /main rabbit "." "." ".*"
   service rabbitmq-server restart
+  rabbitmq-plugins enable rabbitmq_management
 fi
 
 service postgresql status || service postgresql start
