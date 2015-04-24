@@ -26,15 +26,25 @@ else
   apt-get update
 fi
 
+if grep postgresql  /etc/apt/sources.list ; then
+  echo 'PG installed'
+else
+  curl https://www.postgresql.org/media/keys/ACCC4CF8.asc > /tmp/pg-key
+  apt-key add /tmp/pg-key
+
+  add-apt-repository "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main"
+  apt-get update
+fi
+
 apt-get install -y -q  \
   htop \
-  postgresql-9.3 \
+  postgresql-9.4 \
   redis-server \
   redis-tools \
   openjdk-7-jre-headless \
   elasticsearch \
   rabbitmq-server \
-  postgresql-contrib-9.3
+  postgresql-contrib-9.4
 
 if test -e /usr/share/elasticsearch/plugins/kopf ; then
   echo 'kopf already installed'
@@ -48,12 +58,14 @@ apt-get remove ufw -y
 apt-get autoremove -y
 
 
-if grep '^listen_addresses = ' /etc/postgresql/9.3/main/postgresql.conf ; then
+if grep '^listen_addresses = *' /etc/postgresql/9.4/main/postgresql.conf ; then
   echo 'pg already set up'
 else
-  echo 'listen_addresses = "*"' >> /etc/postgresql/9.3/main/postgresql.conf
-  echo 'host    all             all             0.0.0.0/0              md5' >> /etc/postgresql/9.3/main/pg_hba.conf
-  service postgressql restart || service postgressql start
+  sed -i -e "s/.*listen_addresses.*$/listen_addresses = '*'/" /etc/postgresql/9.4/main/postgresql.conf
+  echo 'host    all             all             0.0.0.0/0              md5' >> /etc/postgresql/9.4/main/pg_hba.conf
+
+  sudo su postgres -c 'psql < /vagrant/script/user.sql'
+  service postgresql restart || service postgresql start
 fi
 
 
