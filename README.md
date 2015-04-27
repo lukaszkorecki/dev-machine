@@ -1,4 +1,4 @@
-# Yeah, a mean dev-machine
+# Yeah, mean dev-machine
 
 
 It builds an Ubuntu 14.04 box and installs stuff required by my [DotFiles](https://github.com/lukaszkorecki/DotFiles)
@@ -10,19 +10,15 @@ It builds an Ubuntu 14.04 box and installs stuff required by my [DotFiles](https
 - `vagrant up`
 
 
-## What does it do? And how?
+# What?
 
-By using `bash` and `vagrant` it builds a linux box, installs some awesome tools like
+When `vagrant up` is run Vagrant will boot two machines:
 
-- weechat
-- vim
-- [Go](http://go-lang.org)
-- tmux
-- gcc
-- python & pip
-- nodejs
+- **default** - with all development stuff like Vim, Ruby 2.2, Golang, Python
+- **storage** - with Elasticsearch 1.4, PG 9.4 and RabbitMQ
 
-and makes `ruby 2.1.x` the default ruby.
+
+See `boostrap*` files for more details
 
 # Licence
 
