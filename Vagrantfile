@@ -9,7 +9,7 @@ Vagrant.configure('2') do |config|
     # vb.gui = true
     vb.customize [
       'modifyvm', :id,
-      '--memory', (1 * 1024).to_s,
+      '--memory', (1.5 * 1024).to_i.to_s,
       '--cpus', 1
     ]
   end

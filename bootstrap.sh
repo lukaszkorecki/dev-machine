@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 
-set -e
+if [[ -e /vagrant ]] ; then
+  echo "!!! Running in vagrant, no need for sudo su"
+else
+  echo  "!!! Running on real machine, forcing sudo mode"
+  sudo su
+fi
+
 
 log() {
   logger -s -t PROVISIONER -- "$*" 2>&1
@@ -10,6 +16,10 @@ _q() {
   log "> $*"
   $* > /dev/null
 }
+
+
+export DEBIAN_FRONTEND=noninteractive
+set -e
 
 # get all required packages
 
@@ -38,11 +48,14 @@ _q apt-add-repository ppa:brightbox/ruby-ng
 # _q apt-add-repository ppa:gophers/go
 _q apt-add-repository ppa:chris-lea/node.js
 
+# add mosh
+_q apt-add-repository ppa:keithw/mosh
+
 # install latest ruby
 
 _q apt-get update -q
 
-_q apt-get -y -q install ruby2.2  ruby2.2-dev nodejs golang
+_q apt-get -y -q install ruby2.2  ruby2.2-dev nodejs golang mosh
 
 _q update-alternatives --set ruby /usr/bin/ruby2.2
 
@@ -57,6 +70,12 @@ if [[ -e /etc/init.d/iptables-persistent ]] ; then
   /etc/init.d/iptables-persistent flush
 fi
 
-echo "/home/vagrant *(rw,sync,all_squash,anonuid=1000,insecure,no_subtree_check)" > /etc/exports
+if [[ -e /vagrant ]] ;then
+  export NFS_ROOT=/home/vagrant
+else
+  export NFS_ROOT=/home/ubuntu
+fi
+
+echo "$NFS_ROOT *(rw,sync,all_squash,anonuid=1000,insecure,no_subtree_check)" > /etc/exports
 exportfs -a
 /etc/init.d/nfs-kernel-server restart
