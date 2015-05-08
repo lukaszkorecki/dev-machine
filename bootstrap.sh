@@ -39,8 +39,11 @@ _q apt-get -y -q install git-core  \
   python-pip \
   tmux \
   htop \
-  tree
+  tree \
+  nginx
 
+
+pip install ansible
 
 # add brightbox ppa
 
@@ -51,11 +54,14 @@ _q apt-add-repository ppa:chris-lea/node.js
 # add mosh
 _q apt-add-repository ppa:keithw/mosh
 
+# add neovim
+_q apt-add-repository ppa:neovim-ppa/unstable
+
 # install latest ruby
 
 _q apt-get update -q
 
-_q apt-get -y -q install ruby2.2  ruby2.2-dev nodejs golang mosh
+_q apt-get -y -q install ruby2.2  ruby2.2-dev nodejs golang mosh neovim
 
 _q update-alternatives --set ruby /usr/bin/ruby2.2
 
