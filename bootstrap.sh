@@ -59,7 +59,7 @@ _q apt-get -y -q install ruby2.2  ruby2.2-dev nodejs golang mosh
 
 _q update-alternatives --set ruby /usr/bin/ruby2.2
 
-_q gem install bundler pry rake --no-rdoc --no-ri
+_q gem install bundler pry rake m rubocop --no-rdoc --no-ri
 
 # some cleanup
 apt-get autoremove -y
