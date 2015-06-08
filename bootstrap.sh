@@ -40,7 +40,12 @@ _q apt-get -y -q install git-core  \
   tmux \
   htop \
   tree \
-  nginx
+  nginx \
+  libmysqlclient-dev  \
+  libevent-dev  \
+  libxml2-dev  \
+  libxslt1-dev  \
+  libreadline-dev
 
 
 pip install ansible
