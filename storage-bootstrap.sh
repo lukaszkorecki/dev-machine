@@ -27,7 +27,7 @@ else
   curl https://packages.elasticsearch.org/GPG-KEY-elasticsearch > /tmp/es-key
   apt-key add /tmp/es-key
 
-  add-apt-repository "deb http://packages.elasticsearch.org/elasticsearch/1.5/debian stable main"
+  add-apt-repository "deb http://packages.elasticsearch.org/elasticsearch/1.7/debian stable main"
   apt-get update
 fi
 
@@ -59,7 +59,8 @@ apt-get install -y -q  \
   openjdk-7-jre-headless \
   elasticsearch \
   rabbitmq-server \
-  postgresql-contrib-9.4
+  postgresql-contrib-9.4 \
+  redis-server
 
 if test -e /usr/share/elasticsearch/plugins/kopf ; then
   log 'kopf already installed'
