@@ -27,7 +27,7 @@ else
   curl https://packages.elasticsearch.org/GPG-KEY-elasticsearch > /tmp/es-key
   apt-key add /tmp/es-key
 
-  add-apt-repository "deb http://packages.elasticsearch.org/elasticsearch/1.7/debian stable main"
+  add-apt-repository "deb http://packages.elasticsearch.org/elasticsearch/2.x/debian stable main"
   apt-get update
 fi
 
@@ -52,6 +52,7 @@ else
 fi
 
 apt-get install -y -q  \
+  ufw \
   htop \
   postgresql-9.4 \
   redis-server \
@@ -69,7 +70,6 @@ else
   ./elasticsearch/bin/plugin --install lmenezes/elasticsearch-kopf/
 fi
 
-apt-get remove ufw -y
 apt-get autoremove -y
 
 
