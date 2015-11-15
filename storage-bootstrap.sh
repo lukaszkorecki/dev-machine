@@ -56,7 +56,6 @@ apt-get install -y -q  \
   postgresql-9.4 \
   redis-server \
   redis-tools \
-  openjdk-7-jre-headless \
   elasticsearch \
   rabbitmq-server \
   postgresql-contrib-9.4 \
