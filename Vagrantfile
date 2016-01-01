@@ -1,16 +1,25 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+vm_resources = {
+  'default_memory' => (ENV.fetch('VM_DEFAULT_MEM', 1.5).to_f *  1024).to_i.to_s,
+  'default_cpus' => (ENV.fetch('VM_DEFAULT_CPUS', 2).to_i).to_s,
+
+  'storage_memory' => (ENV.fetch('VM_STORAGE_MEM', 3).to_i *  1024).to_s,
+  'storage_cpus' => (ENV.fetch('VM_STORAGE_CPUS', 2).to_i).to_s
+}
+
 Vagrant.configure('2') do |config|
   config.vm.box = 'ubuntu/trusty64'
   config.ssh.forward_agent = true
 
   config.vm.provider :virtualbox do |vb|
+
     # vb.gui = true
     vb.customize [
       'modifyvm', :id,
-      '--memory', (1.5 * 1024).to_i.to_s,
-      '--cpus', 1,
+      '--memory', vm_resources['default_memory'],
+      '--cpus', vm_resources['default_cpus'],
       '--natdnshostresolver1', 'on'
     ]
   end
@@ -31,8 +40,8 @@ Vagrant.configure('2') do |config|
       # vb.gui = true
       vb.customize [
         'modifyvm', :id,
-        '--memory', '512',
-        '--cpus', 1
+        '--memory', vm_resources['storage_memory'],
+        '--cpus', vm_resources['storage_cpus']
       ]
     end
   end

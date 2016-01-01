@@ -20,6 +20,9 @@ _q() {
 export DEBIAN_FRONTEND=noninteractive
 set -e
 
+apt-add-repository ppa:openjdk-r/ppa
+apt update
+yes | apt install  openjdk-8-jdk openjdk-8-jre
 
 if grep elasticsearch /etc/apt/sources.list; then
   log "ES installed"
@@ -28,7 +31,7 @@ else
   apt-key add /tmp/es-key
 
   add-apt-repository "deb http://packages.elasticsearch.org/elasticsearch/2.x/debian stable main"
-  apt-get update
+  apt update
 fi
 
 if grep rabbitmq /etc/apt/sources.list ; then
@@ -38,7 +41,7 @@ else
   apt-key add /tmp/rabbit-key
 
   add-apt-repository 'deb http://www.rabbitmq.com/debian/ testing main'
-  apt-get update
+  apt update
 fi
 
 if grep postgresql  /etc/apt/sources.list ; then
@@ -48,10 +51,19 @@ else
   apt-key add /tmp/pg-key
 
   add-apt-repository "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main"
-  apt-get update
+  apt update
 fi
 
-apt-get install -y -q  \
+if grep rethinkdb /etc/apt/sources.list ; then
+    log 'rethinkdb installed'
+else
+    curl -L https://download.rethinkdb.com/apt/pubkey.gpg > /tmp/rethink-key
+    apt-key add /tmp/rethink-key
+    add-apt-repository "deb http://download.rethinkdb.com/apt trusty main"
+    apt update
+fi
+
+apt install -y -q  \
   ufw \
   htop \
   postgresql-9.4 \
@@ -60,7 +72,8 @@ apt-get install -y -q  \
   elasticsearch \
   rabbitmq-server \
   postgresql-contrib-9.4 \
-  redis-server
+  redis-server \
+  rethinkdb
 
 if test -e /usr/share/elasticsearch/plugins/kopf ; then
   log 'kopf already installed'

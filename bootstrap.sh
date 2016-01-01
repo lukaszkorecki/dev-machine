@@ -68,7 +68,7 @@ _q apt-add-repository ppa:neovim-ppa/unstable
 
 _q apt-get update -q
 
-_q apt-get -y -q install ruby2.2  ruby2.2-dev nodejs golang mosh neovim openjdk-8-jdk openjdk-8-jre
+_q apt-get -y -q install ruby2.2  ruby2.2-dev nodejs golang mosh openjdk-8-jdk openjdk-8-jre
 
 _q update-alternatives --set ruby /usr/bin/ruby2.2
 
