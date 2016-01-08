@@ -22,7 +22,7 @@ set -e
 
 apt-add-repository ppa:openjdk-r/ppa
 apt update
-yes | apt install  openjdk-8-jdk openjdk-8-jre
+yes | apt-get install  openjdk-8-jdk openjdk-8-jre
 
 if grep elasticsearch /etc/apt/sources.list; then
   log "ES installed"
@@ -63,7 +63,7 @@ else
     apt update
 fi
 
-apt install -y -q  \
+apt-get install -y -q  \
   ufw \
   htop \
   postgresql-9.4 \
@@ -80,7 +80,7 @@ if test -e /usr/share/elasticsearch/plugins/kopf ; then
 else
 
   cd /usr/share/
-  ./elasticsearch/bin/plugin --install lmenezes/elasticsearch-kopf/
+  ./elasticsearch/bin/plugin install lmenezes/elasticsearch-kopf/
 fi
 
 apt-get autoremove -y
