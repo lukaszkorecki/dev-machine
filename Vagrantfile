@@ -24,14 +24,13 @@ Vagrant.configure('2') do |config|
     ]
   end
 
-  config.vm.define 'default' do |default|
-    default.vm.synced_folder 'bridge', '/home/vagrant/bridge'
+  config.vm.define 'default' , primary: true do |default|
     default.vm.hostname = 'dev'
     default.vm.network 'private_network', ip: '192.168.34.10'
     default.vm.provision 'shell', path: 'bootstrap.sh'
   end
 
-  config.vm.define 'storage' do |storage|
+  config.vm.define 'storage', autostart: false do |storage|
     storage.vm.hostname = 'storage'
     storage.vm.network 'private_network', ip: '192.168.34.11'
     storage.vm.provision 'shell', path: 'storage-bootstrap.sh'

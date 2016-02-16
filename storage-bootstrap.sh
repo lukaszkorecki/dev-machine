@@ -22,7 +22,7 @@ set -e
 
 apt-add-repository ppa:openjdk-r/ppa
 apt update
-yes | apt-get install  openjdk-8-jdk openjdk-8-jre
+apt-get install -y -q  openjdk-8-jdk openjdk-8-jre
 
 if grep elasticsearch /etc/apt/sources.list; then
   log "ES installed"
