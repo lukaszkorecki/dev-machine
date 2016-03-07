@@ -1,4 +1,4 @@
-# Yeah, mean dev-machine
+# Yeah, a mean dev-machine
 
 
 It builds an Ubuntu 14.04 box and installs stuff required by my [DotFiles](https://github.com/lukaszkorecki/DotFiles)
