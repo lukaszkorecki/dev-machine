@@ -50,25 +50,26 @@ _q apt-get -y -q install git-core  \
 
 pip install ansible
 
+# add openjdk ppa
+
+apt-add-repository ppa:openjdk-r/ppa
+
 # add brightbox ppa
 
 _q apt-add-repository ppa:brightbox/ruby-ng
-# _q apt-add-repository ppa:gophers/go
+
+
 _q apt-add-repository ppa:chris-lea/node.js
 
-_q apt-add-repository ppa:openjdk-r/ppa
 
 # add mosh
 _q apt-add-repository ppa:keithw/mosh
-
-# add neovim
-_q apt-add-repository ppa:neovim-ppa/unstable
 
 # install latest ruby
 
 _q apt-get update -q
 
-_q apt-get -y -q install ruby2.2  ruby2.2-dev nodejs golang mosh openjdk-8-jdk openjdk-8-jre
+_q apt-get -y -q install ruby2.2  ruby2.2-dev nodejs mosh openjdk-8-jdk openjdk-8-jre
 
 _q update-alternatives --set ruby /usr/bin/ruby2.2
 
