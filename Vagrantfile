@@ -1,6 +1,7 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+require 'logger'
 vm_resources = {
   'default_memory' => (ENV.fetch('VM_DEFAULT_MEM', 1.5).to_f *  1024).to_i.to_s,
   'default_cpus' => (ENV.fetch('VM_DEFAULT_CPUS', 2).to_i).to_s,
@@ -8,12 +9,20 @@ vm_resources = {
   'storage_memory' => (ENV.fetch('VM_STORAGE_MEM', 3).to_i *  1024).to_s,
   'storage_cpus' => (ENV.fetch('VM_STORAGE_CPUS', 2).to_i).to_s
 }
+logger = Logger.new(STDOUT)
+logger.info "DEFAULT: Setting #{vm_resources['default_cpus']} CPUS"
+logger.info "DEFAULT: Setting #{vm_resources['default_memory']} RAM"
+
+logger.info "STORAGE: Setting #{vm_resources['storage_cpus']} CPUS"
+logger.info "STORAGE: Setting #{vm_resources['storage_memory']} RAM"
+
 
 Vagrant.configure('2') do |config|
   config.vm.box = 'ubuntu/trusty64'
   config.ssh.forward_agent = true
 
   config.vm.provider :virtualbox do |vb|
+
 
     # vb.gui = true
     vb.customize [
