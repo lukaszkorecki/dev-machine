@@ -120,6 +120,15 @@ else
   rabbitmq-plugins enable rabbitmq_management
 fi
 
+# setup redis
+
+if grep '^bind 0.0.0.0' /etc/redis/redis.conf ; then
+  log 'redis is configured'
+else
+  sed -i 's/^bind 127.0.0.1/bind 0.0.0.0/g' /etc/redis/redis.conf
+  service redis-server restart
+fi
+
 # setup rethinkdb
 if test -e /etc/rethinkdb/instances.d/main.conf ; then
   log 'rethinkdb already set up'
