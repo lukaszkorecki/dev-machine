@@ -83,7 +83,18 @@ else
   ./elasticsearch/bin/plugin install lmenezes/elasticsearch-kopf/
 fi
 
+# make sure ES listens on 0.0.0.0
+esConfig="/etc/elasticsearch/elasticsearch.yml"
+if grep 'network.host: 0' $esConfig ; then
+  log "ES configured!"
+else
+  echo "network.host: 0.0.0.0" >> $esConfig
+  service elasticsearch restart
+fi
+
 apt-get autoremove -y
+
+
 
 
 if grep '^listen_addresses = *' /etc/postgresql/9.4/main/postgresql.conf ; then
@@ -109,11 +120,22 @@ else
   rabbitmq-plugins enable rabbitmq_management
 fi
 
+# setup rethinkdb
+if test -e /etc/rethinkdb/instances.d/main.conf ; then
+  log 'rethinkdb already set up'
+else
+  sed 's/# bind=127.0.0.1/bind=0.0.0.0/g' /etc/rethinkdb/default.conf.sample  > /etc/rethinkdb/instances.d/main.conf
+  service rethinkdb restart
+fi
+
+
 service postgresql status || service postgresql start
 service elasticsearch status || service elasticsearch start
 service redis-server status || service redis-server start
+service rethinkdb status || service rethinkdb start
 
 export HOME=/home/root
 service rabbitmq-server status || service rabbitmq-server start
+
 
 log "Storage: done"
