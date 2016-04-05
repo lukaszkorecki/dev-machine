@@ -36,6 +36,8 @@ Vagrant.configure('2') do |config|
   config.vm.define 'default' , primary: true do |default|
     default.vm.hostname = 'dev'
     default.vm.network 'private_network', ip: '192.168.34.10'
+    # forward nrepl port so that we don't have to tunnel
+    default.vm.network 'forwarded_port', guest: 4001, host: 4001
     default.vm.provision 'shell', path: 'bootstrap.sh'
   end
 
