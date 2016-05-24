@@ -25,6 +25,7 @@ set -e
 
 _q apt-get update -q
 _q apt-get -y -q install git-core  \
+  ntp \
   python-software-properties \
   build-essential \
   libpq-dev \

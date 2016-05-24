@@ -64,6 +64,7 @@ else
 fi
 
 apt-get install -y -q  \
+  ntp \
   ufw \
   htop \
   postgresql-9.4 \
