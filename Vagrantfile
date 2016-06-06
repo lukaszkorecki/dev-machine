@@ -20,9 +20,9 @@ logger.info "STORAGE: Setting #{vm_resources['storage_memory']} RAM"
 Vagrant.configure('2') do |config|
   config.vm.box = 'ubuntu/trusty64'
   config.ssh.forward_agent = true
+  config.ssh.forward_x11 = true
 
   config.vm.provider :virtualbox do |vb|
-
 
     # vb.gui = true
     vb.customize [
@@ -39,6 +39,8 @@ Vagrant.configure('2') do |config|
     # forward nrepl port so that we don't have to tunnel
     default.vm.network 'forwarded_port', guest: 4001, host: 4001
     default.vm.provision 'shell', path: 'bootstrap.sh'
+
+
   end
 
   config.vm.define 'storage', autostart: false do |storage|
