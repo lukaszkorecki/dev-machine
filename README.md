@@ -1,7 +1,7 @@
-# Yeah, a mean dev-machine
+# Dev Machine(s)
 
 
-It builds an Ubuntu 14.04 box and installs stuff required by my [DotFiles](https://github.com/lukaszkorecki/DotFiles)
+Ubuntu 14.04 based set of boxes for nice, Linux based dev environment.
 
 
 ## How to?
@@ -14,8 +14,8 @@ It builds an Ubuntu 14.04 box and installs stuff required by my [DotFiles](https
 
 When `vagrant up` is run Vagrant will boot two machines:
 
-- **default** - with all development stuff like Vim, Ruby 2.2, Golang, Python
-- **storage** - with Elasticsearch 1.4, PG 9.4 and RabbitMQ
+- **default** - with all development stuff like Ruby 2.2, Golang, Python, latest OpenJDK, Node
+- **storage** - with Elasticsearch 2.x, PG 9.4, Redis, RethinkDB 2.3 and RabbitMQ
 
 
 See `boostrap*` files for more details

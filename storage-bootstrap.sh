@@ -96,8 +96,6 @@ fi
 apt-get autoremove -y
 
 
-
-
 if grep '^listen_addresses = *' /etc/postgresql/9.4/main/postgresql.conf ; then
   log 'pg already set up'
 else
