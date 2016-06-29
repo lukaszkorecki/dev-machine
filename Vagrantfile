@@ -39,13 +39,13 @@ Vagrant.configure('2') do |config|
     # forward nrepl port so that we don't have to tunnel
     default.vm.network 'forwarded_port', guest: 4001, host: 4001
     default.vm.provision 'shell', path: 'bootstrap.sh'
-
-
   end
 
   config.vm.define 'storage', autostart: false do |storage|
     storage.vm.hostname = 'storage'
     storage.vm.network 'private_network', ip: '192.168.34.11'
+
+    storage.vm.provision 'shell', path: 'bootstrap.sh'
     storage.vm.provision 'shell', path: 'storage-bootstrap.sh'
 
     storage.vm.provider :virtualbox do |vb|
