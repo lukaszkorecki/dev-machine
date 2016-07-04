@@ -37,7 +37,7 @@ fi
 if grep rabbitmq /etc/apt/sources.list ; then
   log 'Rabbit installed'
 else
-  curl https://www.rabbitmq.com/rabbitmq-signing-key-public.asc > /tmp/rabbit-key
+  curl https://www.rabbitmq.com/rabbitmq-release-signing-key.asc > /tmp/rabbit-key
   apt-key add /tmp/rabbit-key
 
   add-apt-repository 'deb http://www.rabbitmq.com/debian/ testing main'
