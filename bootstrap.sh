@@ -27,6 +27,7 @@ _q apt-get update -q
 _q apt-get -y -q install git-core  \
   ntp \
   libffi6 \
+  libffi-dev \
   python-software-properties \
   build-essential \
   libpq-dev \
