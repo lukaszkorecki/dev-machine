@@ -19,6 +19,11 @@ _q() {
 
 
 export DEBIAN_FRONTEND=noninteractive
+
+echo "Etc/UTC" > /etc/timezone
+sudo dpkg-reconfigure -f noninteractive tzdata
+
+
 set -e
 
 # get all required packages
