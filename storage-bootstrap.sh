@@ -93,6 +93,10 @@ else
   service elasticsearch restart
 fi
 
+# Make sure ES starts when the VM reboots
+sudo update-rc.d elasticsearch defaults 95 10
+sudo /etc/init.d/elasticsearch start
+
 apt-get autoremove -y
 
 
