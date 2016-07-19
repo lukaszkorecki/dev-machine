@@ -84,6 +84,14 @@ else
   ./elasticsearch/bin/plugin install lmenezes/elasticsearch-kopf/
 fi
 
+# add stopwords to ES
+if test -e /etc/elasticsearch/stopwords ; then
+  log 'ES stopwords already present'
+else
+  mkdir -p /etc/elasticsearch/stopwords/en_stop_filter
+  wget -O /etc/elasticsearch/stopwords/en_stop_filter/stopwords.txt https://nomnom-assets.s3.amazonaws.com/nlp/stopwords/en_stop_filter/stopwords.txt
+fi
+
 # make sure ES listens on 0.0.0.0
 esConfig="/etc/elasticsearch/elasticsearch.yml"
 if grep 'network.host: 0' $esConfig ; then
