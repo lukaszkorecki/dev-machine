@@ -101,3 +101,18 @@ fi
 echo "$NFS_ROOT *(rw,sync,all_squash,anonuid=1000,insecure,no_subtree_check)" > /etc/exports
 exportfs -a
 /etc/init.d/nfs-kernel-server restart
+
+
+# install docker
+
+if grep docker /etc/apt/sources.list ; then
+  echo 'docker installed'
+else
+  curl https://apt.dockerproject.org/gpg > /tmp/docker-key
+
+  apt-key add /tmp/docker-key
+
+  add-apt-repository 'deb https://apt.dockerproject.org/repo ubuntu-trusty main'
+  apt update
+  apt install docker-engine
+fi
