@@ -113,6 +113,6 @@ else
   apt-key add /tmp/docker-key
 
   add-apt-repository 'deb https://apt.dockerproject.org/repo ubuntu-trusty main'
-  apt update
-  apt install docker-engine
+  apt-get update
+  apt-get install -y docker-engine
 fi
