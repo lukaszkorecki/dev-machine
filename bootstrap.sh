@@ -67,17 +67,16 @@ apt-add-repository ppa:openjdk-r/ppa
 _q apt-add-repository ppa:brightbox/ruby-ng
 
 
-_q apt-add-repository ppa:chris-lea/node.js
+# add latest-ish node
+curl -q https://deb.nodesource.com/gpgkey/nodesource.gpg.key > /tmp/nodekey
+apt-key add /tmp/nodekey
+add-apt-repository 'deb https://deb.nodesource.com/node_4.x trusty main'
 
-
-# add mosh
-_q apt-add-repository ppa:keithw/mosh
-
-# install latest ruby
+# install latest everthing
 
 _q apt-get update -q
 
-_q apt-get -y -q install ruby2.2  ruby2.2-dev nodejs mosh openjdk-8-jdk openjdk-8-jre
+apt-get -y -q install ruby2.2  ruby2.2-dev nodejs openjdk-8-jdk openjdk-8-jre
 
 _q update-alternatives --set ruby /usr/bin/ruby2.2
 

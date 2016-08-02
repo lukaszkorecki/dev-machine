@@ -50,7 +50,7 @@ else
   curl https://www.postgresql.org/media/keys/ACCC4CF8.asc > /tmp/pg-key
   apt-key add /tmp/pg-key
 
-  add-apt-repository "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main"
+  add-apt-repository "deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main"
   apt update
 fi
 
