@@ -60,11 +60,16 @@ pip install ansible
 
 # add openjdk ppa
 
-apt-add-repository ppa:openjdk-r/ppa
+yes | apt-add-repository ppa:openjdk-r/ppa
+
+# add racket ppa
+
+yes | apt-add-repository  ppa:plt/racket
+
 
 # add brightbox ppa
 
-_q apt-add-repository ppa:brightbox/ruby-ng
+yes | apt-add-repository ppa:brightbox/ruby-ng
 
 
 # add latest-ish node
@@ -76,7 +81,7 @@ add-apt-repository 'deb https://deb.nodesource.com/node_4.x trusty main'
 
 _q apt-get update -q
 
-apt-get -y -q install ruby2.2  ruby2.2-dev nodejs openjdk-8-jdk openjdk-8-jre
+apt-get -y -q install racket ruby2.2  ruby2.2-dev nodejs openjdk-8-jdk openjdk-8-jre
 
 _q update-alternatives --set ruby /usr/bin/ruby2.2
 
