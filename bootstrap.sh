@@ -29,7 +29,7 @@ set -e
 # get all required packages
 
 _q apt-get update -q
-_q apt-get -y -q install git-core  \
+_q apt-get -y -q install  \
   ntp \
   libffi6 \
   libffi-dev \
@@ -62,6 +62,10 @@ pip install ansible
 
 yes | apt-add-repository ppa:openjdk-r/ppa
 
+# add latest git
+
+yes | apt-add-repository ppa:git-core/ppa
+
 # add racket ppa
 
 yes | apt-add-repository  ppa:plt/racket
@@ -81,7 +85,7 @@ add-apt-repository 'deb https://deb.nodesource.com/node_4.x trusty main'
 
 _q apt-get update -q
 
-apt-get -y -q install racket ruby2.2  ruby2.2-dev nodejs openjdk-8-jdk openjdk-8-jre
+apt-get -y -q install git racket ruby2.2  ruby2.2-dev nodejs openjdk-8-jdk openjdk-8-jre
 
 _q update-alternatives --set ruby /usr/bin/ruby2.2
 
